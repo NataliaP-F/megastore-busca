@@ -1,9 +1,11 @@
 pub mod produto;
 pub mod catalogo;
+pub mod recommendation;
 pub mod busca;
 
 use produto::Produto;
 use catalogo::Catalogo;
+use recommendation::RecommendationGraph;
 use busca::buscar_por_nome;
 
 fn main() {
@@ -38,5 +40,18 @@ fn main() {
 
     for p in resultados {
         println!("{:?}", p);
+    }
+
+    let mut grafo = RecommendationGraph::new();
+
+// criando relações entre produtos (simulando "quem compra também compra")
+    grafo.add_relation(1, 2);
+    grafo.add_relation(1, 3);
+
+    println!("\n=== RECOMENDAÇÕES PARA PRODUTO 1 ===");
+    let recomendados = grafo.recommend(1);
+
+    for id in recomendados {
+    println!("Produto relacionado: {}", id);
     }
 }
