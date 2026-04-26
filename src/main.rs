@@ -1,6 +1,6 @@
-mod produto;
-mod catalogo;
-mod busca;
+pub mod produto;
+pub mod catalogo;
+pub mod busca;
 
 use produto::Produto;
 use catalogo::Catalogo;
